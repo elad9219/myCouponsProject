@@ -15,7 +15,15 @@ public class Coupon {
     private int amount;
     private double price;
     private String image;
+    private boolean isExpired;
 
+    public boolean isExpired() {
+        return isExpired;
+    }
+
+    public void setExpired(boolean expired) {
+        isExpired = expired;
+    }
 
     public Coupon(UUID id, UUID company_id, Category category, String title, String description, Date start_date, Date end_date, int amount, double price, String image) {
         this.id = id;
