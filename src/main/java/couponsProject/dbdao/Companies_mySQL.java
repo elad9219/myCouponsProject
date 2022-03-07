@@ -19,7 +19,7 @@ public class Companies_mySQL implements CompaniesDAO {
         Map<Integer, Object> map = new HashMap<>();
         map.put(1, email);
         map.put(2, password);
-        ResultSet resultSet = DBTools.runStatementWithResultSet(QUERY_IS_EXISTS, map);
+        ResultSet resultSet = null;//DBManager.COMPANY_IS_EXISTS;
         resultSet.next();
         return (resultSet.getInt(1) == 1);
     }
@@ -79,5 +79,10 @@ public class Companies_mySQL implements CompaniesDAO {
     @Override
     public Company getOneCompany(int companyID) {
         return null;
+    }
+
+    @Override
+    public boolean isNameOrEmailExist(String name, String email) throws SQLException {
+        return false;
     }
 }

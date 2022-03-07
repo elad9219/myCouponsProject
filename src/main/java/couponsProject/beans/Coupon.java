@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Coupon {
 
     private  UUID id = UUID.randomUUID();
-    private  UUID company_id = UUID.randomUUID();
+    private  int company_id;
     private Category category;
     private String title;
     private String description;
@@ -25,7 +25,7 @@ public class Coupon {
         isExpired = expired;
     }
 
-    public Coupon(UUID id, UUID company_id, Category category, String title, String description, Date start_date, Date end_date, int amount, double price, String image) {
+    public Coupon(UUID id, int company_id, Category category, String title, String description, Date start_date, Date end_date, int amount, double price, String image) {
         this.id = id;
         this.company_id = company_id;
         this.category = category;
@@ -76,7 +76,7 @@ public class Coupon {
         return id;
     }
 
-    public UUID getCompany_id() {
+    public int getCompany_id() {
         return company_id;
     }
 
@@ -94,11 +94,11 @@ public class Coupon {
 
     public Date getStart_date() {
         return start_date;
-    }
+    } //example:Date.valueOf(LocalDate.now())
 
     public Date getEnd_date() {
         return end_date;
-    }
+    } //example:Date.valueOf(LocalDate.now().plusDays(12))
 
     public int getAmount() {
         return amount;

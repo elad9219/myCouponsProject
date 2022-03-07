@@ -20,7 +20,7 @@ public class Customers_mySQL implements CustomersDAO {
         Map<Integer, Object> map = new HashMap<>();
         map.put(1, email);
         map.put(2, password);
-        ResultSet resultSet = DBTools.runStatementWithResultSet(QUERY_IS_EXISTS, map);
+        ResultSet resultSet = DBTools.runQueryForResult(DBManager.COMPANY_IS_EXISTS, map);
         resultSet.next();
         return (resultSet.getInt(1) == 1);
     }

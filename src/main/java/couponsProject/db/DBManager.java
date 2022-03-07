@@ -85,8 +85,7 @@ public class DBManager {
             "  `end_date` DATETIME NOT NULL," +
             "  `amount` INT NOT NULL," +
             "  `price` DOUBLE NOT NULL," +
-            "  `image` VARCHAR(45) NOT NULL," +
-            "  PRIMARY KEY (`id`))," +
+            "  `image` VARCHAR(45) NOT NULL,"+
             "  INDEX `company_id_idx` (`company_id` ASC) VISIBLE," +
             "  INDEX `category_id_idx` (`category_id` ASC) VISIBLE," +
             "  CONSTRAINT `company_id`" +
@@ -117,4 +116,7 @@ public class DBManager {
             " ON DELETE NO ACTION" +
             " ON UPDATE NO ACTION)";
 
+    public static final String COMPANY_IS_EXISTS = "SELECT count(*) as total from companies WHERE email=? AND password=?";
+
+    public static final String SHOW_ALL_COMPANIES ="SELECT * FROM coupons_lab.companies";
 }

@@ -1,7 +1,6 @@
 package couponsProject.db;
 
 
-
 import java.sql.*;
 import java.util.Collection;
 import java.util.List;
@@ -105,4 +104,38 @@ public class DBTools {
         }
     }
 
+    public static ResultSet runStatementWithResultSet(String sql, Map<Integer, Object> parameters) {
+        Connection connection = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            parameters.forEach((key, value) -> {
+                try {
+                    if (value instanceof Integer) {
+                        preparedStatement.setInt(key, (Integer) value);
+                    } else if (value instanceof String) {
+                        preparedStatement.setString(key, String.valueOf(value));
+                    } else if (value instanceof Date) {
+                        preparedStatement.setDate(key, (Date) value);
+                    } else if (value instanceof Double) {
+                        preparedStatement.setDouble(key, (Double) value);
+                    } else if (value instanceof Boolean) {
+                        preparedStatement.setBoolean(key, (Boolean) value);
+                    } else if (value instanceof Float) {
+                        preparedStatement.setFloat(key, (Float) value);
+                    }
+                } catch (SQLException err) {
+                    System.out.println(err.getMessage());
+                }
+            });
+
+            return preparedStatement.executeQuery();
+        } catch (InterruptedException | SQLException err) {
+            System.out.println(err.getMessage());
+            return null;
+        } finally {
+            ConnectionPool.getInstance().returnConnection(connection);
+        }
+    }
 }

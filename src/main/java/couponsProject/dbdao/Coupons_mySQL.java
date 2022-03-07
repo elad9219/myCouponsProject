@@ -1,5 +1,6 @@
 package couponsProject.dbdao;
 
+import couponsProject.beans.Category;
 import couponsProject.beans.Coupon;
 import couponsProject.dao.CouponsDAO;
 import couponsProject.db.DBManager;
@@ -59,10 +60,11 @@ public class Coupons_mySQL implements CouponsDAO {
         ResultSet resultSet = DBTools.runQueryForResult(sql, values);
         try {
             while (resultSet.next()) {
+
                 Coupon coupon = new Coupon(
                         resultSet.getObject("id", java.util.UUID.class),
-                        resultSet.getObject("company_id", java.util.UUID.class),
-                        resultSet.getInt("category"),
+                        resultSet.getInt("company_id"),
+                        Category.valueOf(resultSet.getString("category")),
                         resultSet.getString("title"),
                         resultSet.getString("description"),
                         resultSet.getDate("start_date"),
@@ -93,4 +95,5 @@ public class Coupons_mySQL implements CouponsDAO {
     public void deleteCouponPurchase(int customer_id, int coupon_id) {
 
     }
+
 }

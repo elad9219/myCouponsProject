@@ -8,4 +8,5 @@ public enum Category {
 
     public final int value = 1 + ordinal();
 
+
 }

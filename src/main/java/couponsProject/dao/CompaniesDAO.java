@@ -20,5 +20,7 @@ public interface CompaniesDAO {
 
     Company getOneCompany(int companyID);
 
+    boolean isNameOrEmailExist (String name, String email) throws SQLException;
+
 
 }
